@@ -11,6 +11,8 @@ public class UIButtonClick : MonoBehaviour
 	[SerializeField] private int rotationAmount;
 	[SerializeField] private AnimationCurve magnitudeEvolution;
 	[SerializeField] private AnimationCurve scaleEvolution;
+	[SerializeField] private bool interactableOnTransitionEnd;
+	[SerializeField] private Button[] otherButtons;
 	
 	private void Start()
 	{
@@ -22,6 +24,7 @@ public class UIButtonClick : MonoBehaviour
 	public void Rotate()
 	{
 		button.interactable = false;
+		ToggleOtherButtons(false);
 		StartCoroutine(StartRotation());
 	}
 	
@@ -54,7 +57,25 @@ public class UIButtonClick : MonoBehaviour
 		}
 		
 		transform.rotation = Quaternion.identity;
-		button.interactable = true;
+		
+		if (interactableOnTransitionEnd)
+		{
+			button.interactable = true;
+		}
+		else
+		{
+			button.interactable = false;
+		}
+		
+		ToggleOtherButtons(true);
+	}
+	
+	private void ToggleOtherButtons(bool value)
+	{
+		foreach (var button in otherButtons)
+		{
+			button.interactable = value;
+		}
 	}
 }
 
