@@ -117,7 +117,7 @@ public class SerializedData : MonoBehaviour
 		justRun = PlayerPrefs.GetInt("JustRun", 1);
 	}
 
-	private static void ClearData()
+	public static void ClearData()
 	{
 		currentLevelsScore = 1;
 		coins = 100;

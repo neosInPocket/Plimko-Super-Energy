@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ColorButton : MonoBehaviour
@@ -7,6 +8,7 @@ public class ColorButton : MonoBehaviour
 	[SerializeField] private Button button;
 	[SerializeField] private Image colorContainer;
 	[SerializeField] private TMP_Text usageText;
+	
 	private Color color;
 	
 	public Color ButtonColor
@@ -24,7 +26,7 @@ public class ColorButton : MonoBehaviour
 		button.interactable = value;
 	}
 	
-	public void SetUsageAmount(int usages)
+	public void CheckUsageAmount(int usages)
 	{
 		if (usages == 0)
 		{
@@ -37,5 +39,4 @@ public class ColorButton : MonoBehaviour
 		
 		usageText.text = usages.ToString();
 	}
-	
 }

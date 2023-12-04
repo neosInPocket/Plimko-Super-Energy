@@ -8,13 +8,15 @@ public class PyramidTriggerZoneRenderer : MonoBehaviour
 	[SerializeField] private ParticleSystem topDust;
 	[SerializeField] private ParticleSystem bottomDust;
 	[SerializeField] private SpriteRenderer zone;
+	[Range(0, 1f)]
+	[SerializeField] private float alpha = 0.5f;
 	private Color color;
 	public Color CurrentColor
 	{
 		get => color;
 		set
 		{
-			color = value;
+			value.a = alpha;
 			color = value;
 			zone.color = color;
 			var topMain = topDust.main;
@@ -24,6 +26,8 @@ public class PyramidTriggerZoneRenderer : MonoBehaviour
 			bottomMain.startColor = value;
 		}
 	}
+	
+	public bool IsEnabled => zone.enabled;
 	
 	public void Clear(Vector2 position, Vector2 size)
 	{
@@ -53,21 +57,5 @@ public class PyramidTriggerZoneRenderer : MonoBehaviour
 			topDust.Play();
 		}
 		
-	}
-	
-	public void ToggleVisibility()
-	{
-		if (zone.enabled)
-		{
-			zone.enabled = false;
-			bottomDust.Stop();
-			topDust.Stop();
-		}
-		else
-		{
-			zone.enabled = true;
-			bottomDust.Play();
-			topDust.Play();
-		}
 	}
 }
