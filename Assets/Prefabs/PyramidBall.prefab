@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8161320226035725332}
   - component: {fileID: 8281097830191080515}
   - component: {fileID: 1280440418650091198}
+  - component: {fileID: 3619089843419533999}
   m_Layer: 0
   m_Name: PyramidBall
   m_TagString: Untagged
@@ -120,3 +121,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1155
+--- !u!114 &3619089843419533999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664385201803786439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a11539eb8391ea4bb2d44cc3356bf85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

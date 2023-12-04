@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PyramidSpawner : MonoBehaviour
@@ -5,12 +6,18 @@ public class PyramidSpawner : MonoBehaviour
 	[SerializeField] private Vector2 yBorders;
 	[SerializeField] private Vector2 xBorders;
 	[SerializeField] private int rowsAmount;
-	[SerializeField] private GameObject pyramidBall;
+	[SerializeField] private PyramidBall pyramidBall;
+	[SerializeField] private PyramidTriggerZoneController triggerZone;
+	private List<PyramidBall> pyramidBalls; 
+	private List<PyramidTriggerZoneController> triggerZones;
 	
 	private Vector2 screenSize;
 	
 	private void Start()
 	{
+		pyramidBalls = new List<PyramidBall>();
+		triggerZones = new List<PyramidTriggerZoneController>();
+		
 		screenSize = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
 		
 		CreatePyramid();
@@ -33,11 +40,22 @@ public class PyramidSpawner : MonoBehaviour
 			
 			for (int j = rowsAmount - i; j > 0; j--)
 			{
-				Instantiate(pyramidBall, ballPos, Quaternion.identity, transform);
+				pyramidBalls.Add(Instantiate(pyramidBall, ballPos, Quaternion.identity, transform));
 				ballPos.x += horizontalStep;
 			}
 			
 			ballPos.x = horizontalSize.x + (i + 1) * horizontalStep / 2;
+			
+			if (i == rowsAmount - 1)
+			{
+				continue;
+			}
+			
+			Vector2 triggerPosition = new Vector2(0,  ballPos.y + verticalStep / 2);
+			var zone = Instantiate(triggerZone, triggerPosition, Quaternion.identity, transform);
+			zone.Clear(triggerPosition, new Vector2(2 * screenSize.x, verticalStep));
+			triggerZones.Add(zone);
+			zone.Enable(false);
 		}
 	}
 }
