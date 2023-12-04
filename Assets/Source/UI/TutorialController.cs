@@ -29,6 +29,7 @@ public class TutorialController : MonoBehaviour
 		if (currentCounter == texts.Length)
 		{
 			animator.SetTrigger("hide");
+			Touch.onFingerDown -= ChangeReplica;
 			return;
 		}
 		

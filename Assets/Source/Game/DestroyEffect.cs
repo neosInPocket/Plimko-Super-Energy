@@ -5,5 +5,19 @@ using UnityEngine;
 
 public class DestroyEffect : MonoBehaviour
 {
-    public Action<DestroyEffect> EffectEnd;
+	
+	[SerializeField] private ParticleSystem particles;
+	public Action<DestroyEffect> EffectEnd;
+	
+	private void Start()
+	{
+		StartCoroutine(DeathRoutine());
+	}
+	
+	private IEnumerator DeathRoutine()
+	{
+		yield return new WaitForSeconds(particles.main.duration);
+		EffectEnd?.Invoke(this);
+		Destroy(gameObject);
+	}
 }

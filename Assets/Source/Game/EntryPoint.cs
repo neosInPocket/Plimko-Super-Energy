@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EntryPoint : MonoBehaviour
 {
@@ -21,5 +19,18 @@ public class EntryPoint : MonoBehaviour
 		{
 			pausable.Enable();
 		}
+	}
+	
+	public void PauseAll()
+	{
+		foreach (var pausable in pauseController.Pausables)
+		{
+			pausable.Pause();
+		}
+	}
+	
+	public void LoadMenu()
+	{
+		SceneManager.LoadScene("PlayMenuScene");
 	}
 }

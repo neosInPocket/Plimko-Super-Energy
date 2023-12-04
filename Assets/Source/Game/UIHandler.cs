@@ -8,14 +8,59 @@ public class UIHandler : MonoBehaviour
 	[SerializeField] private EntryPoint entryPoint;
 	[SerializeField] private TutorialController tutorialController;
 	[SerializeField] private CountingScreen countingScreen;
+	[SerializeField] private DestroyZone destroyZone;
+	[SerializeField] private TimeCounter timeCounter;
+	[SerializeField] private LoseScreen loseScreen;
+	[SerializeField] private int pointsToAdd;
+	[SerializeField] private int pointsToRemove;
+	
+	private int currentPoints;
+	private int maxPoints => (int)(-30f * Mathf.Exp(-SerializedData.CurrentLevelsScore * SerializedData.CurrentLevelsScore / 100f) + 70f);
+	private int maxReward => (int)(-30f * Mathf.Exp(-SerializedData.CurrentLevelsScore * SerializedData.CurrentLevelsScore / 100f) + 70f);
+	private int maxTime => (int)(20f * Mathf.Exp(-SerializedData.CurrentLevelsScore * SerializedData.CurrentLevelsScore * SerializedData.CurrentLevelsScore * SerializedData.CurrentLevelsScore / 1000f) + 20f);
 	
 	private void Start()
 	{
 		SetGame();
+		destroyZone.ColorMatch += OnColorMatch;
+	}
+	
+	private void OnColorMatch(bool isMatch)
+	{
+		if (isMatch)
+		{
+			currentPoints += pointsToAdd;
+		}
+		else
+		{
+			currentPoints -= pointsToRemove;
+			if (currentPoints <= 0)
+			{
+				currentPoints = 0;
+			}
+		}
+		
+		if (currentPoints >= maxPoints)
+		{
+			currentPoints = maxPoints;
+			timeCounter.Time -= OnTimerExpired;
+			loseScreen.StartLoseScreen(false);
+			entryPoint.PauseAll();
+		}
+		
+		gameProgress.RefreshSlider((float)currentPoints / (float)maxPoints);
+	}
+	
+	private void OnTimerExpired()
+	{
+		timeCounter.Time -= OnTimerExpired;
+		loseScreen.StartLoseScreen(false);
+		entryPoint.PauseAll();
 	}
 	
 	public void SetGame()
 	{
+		currentPoints = 0;
 		gameProgress.SetDefaults();
 		
 		if (SerializedData.JustRun == 1)
@@ -37,5 +82,7 @@ public class UIHandler : MonoBehaviour
 	private void OnCountComplete()
 	{
 		entryPoint.StartGame();
+		timeCounter.Time += OnTimerExpired;
+		timeCounter.StartTimer(maxTime);
 	}
 }
