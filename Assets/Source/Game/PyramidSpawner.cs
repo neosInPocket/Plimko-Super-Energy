@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PyramidSpawner : MonoBehaviour
+public class PyramidSpawner : Pausable
 {
 	[SerializeField] private Vector2 yBorders;
 	[SerializeField] private Vector2 xBorders;
@@ -58,4 +59,32 @@ public class PyramidSpawner : MonoBehaviour
 			zone.Enable(false);
 		}
 	}
+
+    public override void Reset()
+    {
+        foreach (var zone in triggerZones)
+		{
+			zone.Enable(false);
+		}
+    }
+
+    public override void Enable()
+    {
+        
+    }
+
+    public override void Disable()
+    {
+        
+    }
+
+    public override void Pause()
+    {
+        
+    }
+
+    public override void UnPause()
+    {
+        
+    }
 }

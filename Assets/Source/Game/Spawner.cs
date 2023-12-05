@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spawner : Pausable
@@ -11,10 +12,11 @@ public class Spawner : Pausable
 	private Vector2 screenSize;
 	private Vector2 worldBorders;
 	private bool isSpawning;
-	
+	private List<JugglingBall> jugglingBalls;
 		
 	private void Start()
 	{
+		jugglingBalls = new List<JugglingBall>();
 		screenSize = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
 		worldBorders = new Vector2(2 * screenSize.x * borders.x - screenSize.x, 2 * screenSize.x * borders.y - screenSize.x);
 	}
@@ -50,14 +52,22 @@ public class Spawner : Pausable
 	}
 	
 	public override void Pause()
-    {
-        Disable();
-    }
+	{
+		Disable();
+		foreach (var ball in jugglingBalls)
+		{
+			ball.Freeze();
+		}
+	}
 
-    public override void UnPause()
-    {
-        Enable();
-    }
+	public override void UnPause()
+	{
+		Enable();
+		foreach (var ball in jugglingBalls)
+		{
+			ball.UnFreeze();
+		}
+	}
 
 	private void ClearAllBalls()
 	{
@@ -71,10 +81,16 @@ public class Spawner : Pausable
 	{
 		isSpawning = true;
 		Vector2 position = new Vector2(Random.Range(worldBorders.x, worldBorders.y), transform.position.y);
-		Instantiate(fallingBallPrefab, position, Quaternion.identity, transform);
+		var ball = Instantiate(fallingBallPrefab, position, Quaternion.identity, transform);
+		jugglingBalls.Add(ball);
+		ball.Destroyed += OnBallDestroyed;
 		yield return new WaitForSeconds(delay);
 		isSpawning = false;
 	}
-
 	
+	private void OnBallDestroyed(JugglingBall ball)
+	{
+		ball.Destroyed -= OnBallDestroyed;
+		jugglingBalls.Remove(ball);
+	}
 }

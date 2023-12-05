@@ -25,6 +25,7 @@ public class LoseScreen : MonoBehaviour
 	public void OnHide()
 	{
 		uIHandler.SetGame();
+		gameObject.SetActive(false);
 	}
 	
 	public void OnHideNExit()

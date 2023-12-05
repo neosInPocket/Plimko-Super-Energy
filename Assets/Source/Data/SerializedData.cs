@@ -24,12 +24,12 @@ public class SerializedData : MonoBehaviour
 		}
 	}
 	
-	public static int BallBreakSpeed
+	public static int ExtraTime
 	{
-		get => ballBreakSpeed;
+		get => extraTime;
 		set
 		{
-			ballBreakSpeed = value;
+			extraTime = value;
 			Serialize();
 		}
 	}
@@ -76,7 +76,7 @@ public class SerializedData : MonoBehaviour
 	
 	private static int currentLevelsScore;
 	private static int coins;
-	private static int ballBreakSpeed;
+	private static int extraTime;
 	private static int gravity;
 	private static int justRun;
 	private static float music;
@@ -97,7 +97,7 @@ public class SerializedData : MonoBehaviour
 	{
 		PlayerPrefs.SetInt("CurrentLevelsScore", currentLevelsScore);
 		PlayerPrefs.SetInt("Coins", coins);
-		PlayerPrefs.SetInt("BallBreakSpeed", ballBreakSpeed);
+		PlayerPrefs.SetInt("ExtraTime", extraTime);
 		PlayerPrefs.SetInt("Gravity", gravity);
 		PlayerPrefs.SetFloat("Music", music);
 		PlayerPrefs.SetFloat("Effects", effects);
@@ -110,7 +110,7 @@ public class SerializedData : MonoBehaviour
 	{
 		coins = PlayerPrefs.GetInt("Coins", 100);
 		currentLevelsScore = PlayerPrefs.GetInt("CurrentLevelsScore", 1);
-		ballBreakSpeed = PlayerPrefs.GetInt("BallBreakSpeed", 1);
+		extraTime = PlayerPrefs.GetInt("ExtraTime", 0);
 		gravity = PlayerPrefs.GetInt("Gravity", 0);
 		music = PlayerPrefs.GetFloat("Music", 1f);
 		effects = PlayerPrefs.GetFloat("Effects", 1f);
@@ -121,7 +121,7 @@ public class SerializedData : MonoBehaviour
 	{
 		currentLevelsScore = 1;
 		coins = 100;
-		ballBreakSpeed = 0;
+		extraTime = 0;
 		gravity = 0;
 		music = 1f;
 		effects = 1f;

@@ -10,4 +10,9 @@ public class SetMusicValue : MonoBehaviour
 	{
 		audioSource.volume = SerializedData.Music;
 	}
+	
+	public void Set(float value)
+	{
+		audioSource.volume = value;
+	}
 }

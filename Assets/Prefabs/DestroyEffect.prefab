@@ -9701,6 +9701,7 @@ GameObject:
   - component: {fileID: 9183353609594189217}
   - component: {fileID: 8975970595766991905}
   - component: {fileID: -7635299807375925358}
+  - component: {fileID: -7624269481103832}
   m_Layer: 0
   m_Name: DestroyEffect
   m_TagString: Untagged
@@ -14609,3 +14610,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 9184892764970385743}
+--- !u!114 &-7624269481103832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9058544389341116977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfc817a3a65d94499f2d224fed5900d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 8975970595766991905}

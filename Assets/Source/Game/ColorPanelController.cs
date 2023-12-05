@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ColorPanelController : MonoBehaviour
+public class ColorPanelController : Pausable
 {
 	[SerializeField] private AllColorSO allColor;
 	[SerializeField] private ColorController colorController;
@@ -56,4 +56,32 @@ public class ColorPanelController : MonoBehaviour
 	{
 		SetColor(button.ButtonColor);
 	}
+
+    public override void Reset()
+    {
+        for (int i = 0; i < buttons.Length; i++)
+		{
+			buttons[i].CheckUsageAmount(0);
+		}
+    }
+
+    public override void Enable()
+    {
+        
+    }
+
+    public override void Disable()
+    {
+        
+    }
+
+    public override void Pause()
+    {
+        
+    }
+
+    public override void UnPause()
+    {
+        
+    }
 }

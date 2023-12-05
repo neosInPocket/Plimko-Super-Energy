@@ -11,6 +11,7 @@ public class DestroyZone : MonoBehaviour
 	[SerializeField] private ParticleSystem topParticles;
 	[SerializeField] private ParticleSystem bottomParticles;
 	[SerializeField] private AllColorSO allColors; 
+	[SerializeField] private float colorChangeChance;
 	private Vector2 screenSize;
 	public Color CurrentColor { get; set; }
 	public Action<bool> ColorMatch;
@@ -38,8 +39,6 @@ public class DestroyZone : MonoBehaviour
 		bottomShape.scale = bottomShapeScale;
 		
 		transform.position = new Vector2(0, screenSize.y * 2 * zonePosition - screenSize.y);
-		
-		SetRandomColor();
 	}
 	
 	private void SetColor(Color color)
@@ -71,7 +70,7 @@ public class DestroyZone : MonoBehaviour
 		glowCircleBottom.Play();
 	}
 	
-	private void SetRandomColor()
+	public void SetRandomColor()
 	{
 		SetColor(allColors.Colors[Random.Range(0, allColors.Colors.Length)]);
 	}
@@ -89,7 +88,12 @@ public class DestroyZone : MonoBehaviour
 				ColorMatch?.Invoke(false);
 			}
 			
-			SetRandomColor();
+			
+			if (Random.Range(0, 1f) < colorChangeChance)
+			{
+				SetRandomColor();
+			}
+			
 			ball.Destroy();
 		}
 	}

@@ -18,7 +18,7 @@ public class StoreUpgradeContainer : MonoBehaviour
 	
 	public void Refresh()
 	{
-		int currentUpgradeAmount = upgradeType == UpgradeType.BallBreakSpeed ? SerializedData.BallBreakSpeed : SerializedData.Gravity;
+		int currentUpgradeAmount = upgradeType == UpgradeType.BallBreakSpeed ? SerializedData.ExtraTime : SerializedData.Gravity;
 		
 		if (SerializedData.Coins - cost >= 0 && currentUpgradeAmount < 4)
 		{
@@ -38,7 +38,7 @@ public class StoreUpgradeContainer : MonoBehaviour
 		
 		if (upgradeType == UpgradeType.BallBreakSpeed)
 		{
-			SerializedData.BallBreakSpeed++;
+			SerializedData.ExtraTime++;
 		}
 		else
 		{

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorController : MonoBehaviour
+public class ColorController : Pausable
 {
 	private Color color;
 	private Dictionary<Color, int> currentColors;
@@ -12,7 +12,7 @@ public class ColorController : MonoBehaviour
 		set => color = value;
 	}
 	
-	private void Start()
+	private void Awake()
 	{
 		currentColors = new Dictionary<Color, int>();
 	}
@@ -61,4 +61,29 @@ public class ColorController : MonoBehaviour
 			return 0;
 		}
 	}
+
+    public override void Reset()
+    {
+        currentColors.Clear();
+    }
+
+    public override void Enable()
+    {
+        
+    }
+
+    public override void Disable()
+    {
+        
+    }
+
+    public override void Pause()
+    {
+        
+    }
+
+    public override void UnPause()
+    {
+        
+    }
 }

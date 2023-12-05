@@ -3,9 +3,10 @@ using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
-public class InputHandler : MonoBehaviour
+public class InputHandler : Pausable
 {
 	public Action<GameObject> RaycastTouch;
+	private bool paused;
 	
 	private void Awake()
 	{
@@ -29,6 +30,7 @@ public class InputHandler : MonoBehaviour
 	
 	public void OnFingerDown(Finger finger)
 	{
+		if (paused) return;
 		var fingerPosition = Camera.main.ScreenToWorldPoint(finger.screenPosition);
 		RaycastHit2D raycast = Physics2D.Raycast(fingerPosition, Vector3.forward);
 		
@@ -41,5 +43,30 @@ public class InputHandler : MonoBehaviour
 	private void OnDestroy()
 	{
 		Enable(false);
+	}
+
+	public override void Reset()
+	{
+		paused = false;
+	}
+
+	public override void Enable()
+	{
+		paused = false;
+	}
+
+	public override void Disable()
+	{
+		paused = true;
+	}
+
+	public override void Pause()
+	{
+		paused = true;
+	}
+
+	public override void UnPause()
+	{
+		paused = false;
 	}
 }

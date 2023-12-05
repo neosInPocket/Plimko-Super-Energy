@@ -7,10 +7,7 @@ public class EntryPoint : MonoBehaviour
 	
 	private void Start()
 	{
-		foreach (var pausable in pauseController.Pausables)
-		{
-			pausable.Reset();
-		}
+		ResetAll();
 	}
 	
 	public void StartGame()
@@ -21,11 +18,27 @@ public class EntryPoint : MonoBehaviour
 		}
 	}
 	
+	public void ResetAll()
+	{
+		foreach (var pausable in pauseController.Pausables)
+		{
+			pausable.Reset();
+		}
+	}
+	
 	public void PauseAll()
 	{
 		foreach (var pausable in pauseController.Pausables)
 		{
 			pausable.Pause();
+		}
+	}
+	
+	public void UnPauseAll()
+	{
+		foreach (var pausable in pauseController.Pausables)
+		{
+			pausable.UnPause();
 		}
 	}
 	

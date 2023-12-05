@@ -17,7 +17,7 @@ public class UIHandler : MonoBehaviour
 	private int currentPoints;
 	private int maxPoints => (int)(-30f * Mathf.Exp(-SerializedData.CurrentLevelsScore * SerializedData.CurrentLevelsScore / 100f) + 70f);
 	private int maxReward => (int)(-30f * Mathf.Exp(-SerializedData.CurrentLevelsScore * SerializedData.CurrentLevelsScore / 100f) + 70f);
-	private int maxTime => (int)(20f * Mathf.Exp(-SerializedData.CurrentLevelsScore * SerializedData.CurrentLevelsScore * SerializedData.CurrentLevelsScore * SerializedData.CurrentLevelsScore / 1000f) + 20f);
+	private int maxTime => (int)(30f * Mathf.Exp(-SerializedData.CurrentLevelsScore * SerializedData.CurrentLevelsScore * SerializedData.CurrentLevelsScore * SerializedData.CurrentLevelsScore / 1000f) + 20f) + SerializedData.ExtraTime * 10;
 	
 	private void Start()
 	{
@@ -44,7 +44,9 @@ public class UIHandler : MonoBehaviour
 		{
 			currentPoints = maxPoints;
 			timeCounter.Time -= OnTimerExpired;
-			loseScreen.StartLoseScreen(false);
+			loseScreen.StartLoseScreen(true);
+			SerializedData.CurrentLevelsScore++;
+			SerializedData.Coins += maxReward;
 			entryPoint.PauseAll();
 		}
 		
@@ -60,8 +62,10 @@ public class UIHandler : MonoBehaviour
 	
 	public void SetGame()
 	{
+		entryPoint.ResetAll();
 		currentPoints = 0;
 		gameProgress.SetDefaults();
+		destroyZone.SetRandomColor();
 		
 		if (SerializedData.JustRun == 1)
 		{
