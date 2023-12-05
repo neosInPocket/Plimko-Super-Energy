@@ -11,5 +11,53 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PyramidGameScene.unity
     guid: b8239ebaba2b1124a84ec23515aea4c2
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene.unity
+    guid: e26f14a33768ce642b2ba0b7cc5442e1
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 1.unity
+    guid: 207a442be39bc914f94abeab5447961c
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 2.unity
+    guid: ea1bfd354a07be94eb566b830c6c4d6a
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 3.unity
+    guid: c9c36a85e938d694cb505cc1551a782f
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 4.unity
+    guid: 2b3fddf176a9ccb4b913f7acfaa3209f
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 5.unity
+    guid: 0e13e6d083282504685ba2ce3b74ec0a
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 6.unity
+    guid: 0eace47deb937d943962942044289302
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 7.unity
+    guid: a9c633dfc58343d42a00aab9a2ad7005
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 8.unity
+    guid: 88a30b335f812564483ea2cc49eb5a7b
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 9.unity
+    guid: f483aea218c462f4ea588670f579b3e3
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 10.unity
+    guid: b28bcab297cb4b943b508b48d89c5c88
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 11.unity
+    guid: f233c48daab7af34cb881ed956f4b845
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 12.unity
+    guid: 8e0437b737a1c4b49b18545e08f26ff2
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 13.unity
+    guid: df1a081aa5dc77f459e09ec7e53a26ab
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 14.unity
+    guid: d9c56e03efbfa8c4888bd7d4c8af5b85
+  - enabled: 1
+    path: Assets/Scenes/TimeCounterScene 15.unity
+    guid: fd9596283c8ce7b4da82ad3cc279b9c7
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 4e448b86ad88d3940807b419ed0997af, type: 2}

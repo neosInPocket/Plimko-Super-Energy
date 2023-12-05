@@ -3765,7 +3765,7 @@ MonoBehaviour:
   currentTMPText: {fileID: 451877889}
   animator: {fileID: 1457170976}
   texts:
-  - Welcome to Pyramid Collection!
+  - Welcome to Plimko Super Energy!
   - Place barriers inside the pyramid to hold back balls of a certain color
   - Your goal is to skip all the balls whose color matches the color of the platform
     below

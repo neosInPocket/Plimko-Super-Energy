@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TimeCounter : Pausable
 {
-    [SerializeField] private Image timerFill;
+	[SerializeField] private Image timerFill;
 	[SerializeField] private TMP_Text timerText;
 	private bool isPaused;
 	public Action Time;
@@ -14,6 +14,7 @@ public class TimeCounter : Pausable
 	public void StartTimer(float seconds)
 	{
 		StartCoroutine(StartTimerRoutine(seconds));
+		isPaused = false;
 	}
 	
 	public override void Disable()
@@ -23,8 +24,10 @@ public class TimeCounter : Pausable
 	
 	public override void Reset()
 	{
+		StopAllCoroutines();
 		timerText.text = "0,00";
 		timerFill.fillAmount = 1f;
+		isPaused = false;
 	}
 	
 	public override void Pause()

@@ -74,6 +74,7 @@ public class TransitionScreen : MonoBehaviour
 		{
 			while (dissolvePanels[0].effectFactor > 0)
 			{
+				
 				foreach (var text in fadeTexts)
 				{
 					var color = text.color;
@@ -82,6 +83,13 @@ public class TransitionScreen : MonoBehaviour
 				}
 				
 				yield return new WaitForEndOfFrame();
+			}
+			
+			foreach (var text in fadeTexts)
+			{
+				var color = text.color;
+				color.a = 1;
+				text.color = color;
 			}
 		}
 		else
@@ -96,6 +104,13 @@ public class TransitionScreen : MonoBehaviour
 				}
 				
 				yield return new WaitForEndOfFrame();
+			}
+			
+			foreach (var text in fadeTexts)
+			{
+				var color = text.color;
+				color.a = 0;
+				text.color = color;
 			}
 		}
 		
